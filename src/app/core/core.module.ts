@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FetchService } from './services/fetch.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TopAlbumsService } from './services/top-albums.service';
 
 @NgModule({
 	declarations: [],
 	imports: [
-		CommonModule
+		CommonModule,
+		HttpClientModule
 	],
-	providers: [FetchService]
+	providers: [TopAlbumsService]
 })
 export class CoreModule {}

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FetchService } from './fetch.service';
+import { TopAlbumsService } from './top-albums.service';
 
-describe('FetchService', () => {
+describe('TopAlbumsService', () => {
 	beforeEach(() => TestBed.configureTestingModule({}));
 
 	it('should be created', () => {
-		const service: FetchService = TestBed.get(FetchService);
+		const service: TopAlbumsService = TestBed.get(TopAlbumsService);
 		expect(service).toBeTruthy();
 	});
 });
