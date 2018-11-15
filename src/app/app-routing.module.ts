@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-
-import { AlbumsComponent } from '../app/top-albums/albums/albums.component';
+import { AlbumsListComponent } from './top-albums/albums-list/albums-list.component';
 
 const routes: Routes = [
-	{ path: 'albums', component: AlbumsComponent, },
+	{ path: 'albums', component: AlbumsListComponent },
 	{ path: '', redirectTo: '/albums', pathMatch: 'full' }
 ];
 

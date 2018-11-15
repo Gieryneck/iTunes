@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AlbumsComponent } from './albums/albums.component';
 import { AlbumsListComponent } from './albums-list/albums-list.component';
 import { ListItemComponent } from './list-item/list-item.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-	declarations: [AlbumsComponent, ListItemComponent, AlbumsListComponent],
+	declarations: [AlbumsListComponent, ListItemComponent],
 	imports: [
-		CommonModule
+		CommonModule,
+		SharedModule
 	]
 })
 

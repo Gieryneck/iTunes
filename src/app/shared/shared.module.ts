@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
-	declarations: [],
+	declarations: [FilterComponent],
 	imports: [
 		CommonModule
 	],
-	exports: []
+	exports: [FilterComponent]
 })
 export class SharedModule {}

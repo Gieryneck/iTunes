@@ -1,5 +1,9 @@
 <div>
-	<ul>
-		<ta-list-item *ngFor="let album of listData" [album]="album"></ta-list-item>
-	</ul>
+	<app-filter (termEmitter)="handleSearch($event)"></app-filter>
+
+	<div *ngIf="filteredListData">
+		<ul>
+			<ta-list-item *ngFor="let album of filteredListData" [album]="album"></ta-list-item>
+		</ul>
+	</div>
 </div>
