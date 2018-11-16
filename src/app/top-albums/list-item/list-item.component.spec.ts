@@ -16,6 +16,10 @@ describe('ItemComponent', () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ListItemComponent);
 		component = fixture.componentInstance;
+		component.album = {
+			name: 'mock-name-1',
+			artist: 'mock-artist-1'
+		};
 		fixture.detectChanges();
 	});
 

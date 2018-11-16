@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IITune } from '../../shared/models/i-iTune';
+import { ListItem } from '../../shared/models/i-list-item';
 
 @Component({
 	selector: 'ta-list-item',
@@ -8,7 +8,7 @@ import { IITune } from '../../shared/models/i-iTune';
 })
 export class ListItemComponent implements OnInit {
 
-	@Input() album: IITune;
+	@Input() album: ListItem;
 
 	constructor() { }
 
