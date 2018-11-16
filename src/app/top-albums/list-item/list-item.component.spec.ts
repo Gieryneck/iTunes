@@ -17,8 +17,8 @@ describe('ItemComponent', () => {
 		fixture = TestBed.createComponent(ListItemComponent);
 		component = fixture.componentInstance;
 		component.album = {
-			name: 'mock-name-1',
-			artist: 'mock-artist-1'
+			name: 'The Best Of',
+			artist: 'Michael Scott'
 		};
 		fixture.detectChanges();
 	});

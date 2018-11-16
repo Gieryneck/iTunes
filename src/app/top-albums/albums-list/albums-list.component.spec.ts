@@ -6,6 +6,8 @@ import { AlbumsListComponent } from './albums-list.component';
 import { ListItemComponent } from '../list-item/list-item.component';
 
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
+import { FilterComponent } from '../../shared/components/filter/filter.component';
 
 describe('AlbumsListComponent', () => {
 	let component: AlbumsListComponent;
@@ -21,10 +23,10 @@ describe('AlbumsListComponent', () => {
 		mockResponse = [
 			{
 				category: 'mock-category-1',
-				artist: 'mock-artist-1',
+				artist: 'Michael Scott',
 				photo: 'mock-photo-1',
 				numberOfSongs: 1,
-				name: 'mock-name-1',
+				name: 'The Best Of',
 				price: 'mock-price-1',
 				releaseDate: 'mock-releaseDate-1',
 				link: 'mock-link-1',
@@ -33,10 +35,10 @@ describe('AlbumsListComponent', () => {
 			},
 			{
 				category: 'mock-category-2',
-				artist: 'mock-artist-2',
+				artist: 'John Doe',
 				photo: 'mock-photo-2',
 				numberOfSongs: 2,
-				name: 'mock-name-2',
+				name: 'Some songs',
 				price: 'mock-price-2',
 				releaseDate: 'mock-releaseDate-2',
 				link: 'mock-link-2',
@@ -47,12 +49,12 @@ describe('AlbumsListComponent', () => {
 
 		mockListData = [
 			{
-				name: 'mock-name-1',
-				artist: 'mock-artist-1'
+				name: 'The Best Of',
+				artist: 'Michael Scott'
 			},
 			{
-				name: 'mock-name-2',
-				artist: 'mock-artist-2'
+				name: 'Some songs',
+				artist: 'John Doe'
 			}
 		];
 
@@ -73,5 +75,31 @@ describe('AlbumsListComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('should display filter component', () => {
+		const filter = fixture.debugElement.query(By.directive(FilterComponent));
+		expect(filter).not.toBeNull();
+	});
+
+	it('should display list item for each album in the filtered albums list', () => {
+		const listItemsDE = fixture.debugElement.queryAll(By.directive(ListItemComponent));
+		expect(listItemsDE.length).toBe(2);
+	});
+
+	describe('handleSearch method', () => {
+		it('should filter list of albums properly, not caring about whitespace at the ends of string or lowercase/uppercase', () => {
+
+			component.handleSearch(' mich ');
+
+			expect(component.filteredListData).toContain(mockListData[0]);
+			expect(component.filteredListData).not.toContain(mockListData[1]);
+		});
+
+		it('should not change list of albums if provided whitespace only', () => {
+			component.handleSearch('    	');
+
+			expect(component.filteredListData.length).toBe(2);
+		});
 	});
 });
