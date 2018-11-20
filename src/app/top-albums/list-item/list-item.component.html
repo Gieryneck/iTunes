@@ -1,5 +1,24 @@
-<li>
-	<p>
-		{{album.name}}<span> - {{album.artist}}</span>
-	</p>
+<li class="album">
+	<div class="img-wrapper">
+		<img src="{{album.photoUrl}}" alt="photo">
+	</div>
+
+	<div class="primary-info">
+		<h3>{{album.name}}</h3>
+		<p>{{album.artist}}</p>
+		<p>{{album.category}}</p>
+	</div>
+
+	<button
+		class="expand-button"
+		[class.panel-open]="panelOpen"
+		(click)="handleClick()">
+
+		<fa-icon [icon]="faAngleDown"></fa-icon>
+	</button>	
 </li>
+
+<div 
+	*ngIf="panelOpen"
+	class="expansion-panel">
+</div>

@@ -1,0 +1,52 @@
+@import '../../../sass/variables';
+
+.album {
+	max-width: 600px;
+	width: 600px;
+	height: 150px; 
+	margin-top: 20px;
+	padding: 10px;
+	background-color: rgb(248, 255, 255);
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	.img-wrapper {
+		
+		img {
+			max-width: 100px;
+			height: auto;	
+		}
+	}
+
+	.primary-info {
+		height: 100px;
+		padding: 10px 10px 10px 30px;
+	}
+
+	.expand-button {
+		background: none;
+		border: none;
+		font-size: 30px;
+		color: $dark-grey;
+		cursor: pointer;
+		position: absolute;
+		bottom: 20px;
+		right: 20px;
+		transition: transform .4s ease-out;
+		outline: none;
+
+		&:active {
+			color: $light-purple;
+		}
+	}
+
+	.expand-button.panel-open {
+		transform: rotate(-180deg);
+	}
+
+}
+
+.expansion-panel {
+	
+}

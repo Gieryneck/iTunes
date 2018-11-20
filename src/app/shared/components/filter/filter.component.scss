@@ -1,0 +1,23 @@
+@import '../../../../sass/variables';
+
+.filter-wrapper {
+	text-align: right;
+	position: relative;
+	
+	input {
+		width: 300px;
+		font-size: 18px;
+		padding: 6px;
+		padding-right: 30px;
+	}
+
+	.clear-filter-button {
+		background-color: none;
+		font-size: 18px;
+		color: $dark-grey;
+		position: absolute;
+		right: 10px;
+		top: 25%;
+		cursor: pointer;
+	}
+}

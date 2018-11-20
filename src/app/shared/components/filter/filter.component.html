@@ -6,12 +6,12 @@
 		(keyup)="handleInput($event.target.value)">
 
 
-	<button 
+	<span 
 		*ngIf="filterValue" 
 		class="clear-filter-button" 
 		(click)="handleClear()">
 
-		x
-	</button>
+		<fa-icon [icon]="faTimes"></fa-icon>
+	</span>
 
 </div>

@@ -7,7 +7,7 @@ import { ListItem } from '../../shared/models/i-list-item';
 @Component({
 	selector: 'ta-albums-list',
 	templateUrl: './albums-list.component.html',
-	styleUrls: ['./albums-list.component.css']
+	styleUrls: ['./albums-list.component.scss']
 })
 
 export class AlbumsListComponent implements OnInit {

@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, flush, tick } from '@angul
 
 import { FilterComponent } from './filter.component';
 import { By } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('FilterComponent', () => {
 	let component: FilterComponent;
@@ -9,7 +10,8 @@ describe('FilterComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [FilterComponent]
+			declarations: [FilterComponent],
+			imports: [FontAwesomeModule]
 		})
 			.compileComponents();
 	}));

@@ -3,15 +3,18 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+
 @Component({
 	selector: 'app-filter',
 	templateUrl: './filter.component.html',
-	styleUrls: ['./filter.component.css']
+	styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
 
 	@Output() termEmitter: EventEmitter<string> = new EventEmitter<string>();
 	public filterValue: string = '';
+	public readonly faTimes = faTimes;
 
 	private readonly termSubject: Subject<string> = new Subject<string>();
 

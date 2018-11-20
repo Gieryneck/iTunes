@@ -26,7 +26,7 @@ export class TopAlbumsService {
 	}
 
 	public createAlbumsList(albums: IITune[]): ListItem[] {
-		return albums.map(album => ({name: album.name, artist: album.artist}));
+		return albums.map(album => ({name: album.name, artist: album.artist, photoUrl: album.photoUrl, id: album.id}));
 	}
 
 	private handleError(error: HttpErrorResponse) {
@@ -41,9 +41,10 @@ export class TopAlbumsService {
 	private mapToITuneModel(dto: IITuneDTO): IITune {
 		return {
 			category: dto.category.attributes.term,
+			id: dto.id.attributes['im:id'],
 			artist: dto['im:artist'].label,
-			photo: dto['im:image'][dto['im:image'].length - 1].label,
-			numberOfSongs: + dto['im:itemCount'].label,
+			photoUrl: dto['im:image'][dto['im:image'].length - 1].label,
+			numberOfSongs: dto['im:itemCount'].label,
 			name: dto['im:name'].label,
 			price: dto['im:price'].label,
 			releaseDate: dto['im:releaseDate'].label,

@@ -1,8 +1,9 @@
 export interface IITune {
 	category: string;
+	id: string;
 	artist: string;
-	photo: string;
-	numberOfSongs: number;
+	photoUrl: string;
+	numberOfSongs: string;
 	name: string;
 	price: string;
 	releaseDate: string;

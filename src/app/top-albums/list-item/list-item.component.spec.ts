@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListItemComponent } from './list-item.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('ItemComponent', () => {
 	let component: ListItemComponent;
@@ -8,7 +9,8 @@ describe('ItemComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ListItemComponent]
+			declarations: [ListItemComponent],
+			imports: [FontAwesomeModule]
 		})
 			.compileComponents();
 	}));
@@ -18,7 +20,9 @@ describe('ItemComponent', () => {
 		component = fixture.componentInstance;
 		component.album = {
 			name: 'The Best Of',
-			artist: 'Michael Scott'
+			artist: 'Michael Scott',
+			photoUrl: 'fake-url',
+			id: 'fake-id'
 		};
 		fixture.detectChanges();
 	});

@@ -24,7 +24,7 @@ describe('AlbumsListComponent', () => {
 			{
 				category: 'mock-category-1',
 				artist: 'Michael Scott',
-				photo: 'mock-photo-1',
+				photoUrl: 'mock-photo-1',
 				numberOfSongs: 1,
 				name: 'The Best Of',
 				price: 'mock-price-1',
@@ -36,7 +36,7 @@ describe('AlbumsListComponent', () => {
 			{
 				category: 'mock-category-2',
 				artist: 'John Doe',
-				photo: 'mock-photo-2',
+				photoUrl: 'mock-photo-2',
 				numberOfSongs: 2,
 				name: 'Some songs',
 				price: 'mock-price-2',
@@ -50,11 +50,15 @@ describe('AlbumsListComponent', () => {
 		mockListData = [
 			{
 				name: 'The Best Of',
-				artist: 'Michael Scott'
+				artist: 'Michael Scott',
+				photoUrl: 'fake-url-1',
+				id: 'fake-id-1'
 			},
 			{
 				name: 'Some songs',
-				artist: 'John Doe'
+				artist: 'John Doe',
+				photoUrl: 'fake-url-2',
+				id: 'fake-id-2'
 			}
 		];
 
