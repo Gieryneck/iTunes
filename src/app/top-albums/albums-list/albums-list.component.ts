@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import { TopAlbumsService } from '../../core/services/top-albums.service';
 import { IITune } from '../../shared/models/i-iTune';
+
+import { debounce } from '../../shared/decorators/debounce.decorator';
 
 @Component({
 	selector: 'ta-albums-list',
@@ -11,8 +13,8 @@ import { IITune } from '../../shared/models/i-iTune';
 
 export class AlbumsListComponent implements OnInit {
 
-	public filteredAlbums: IITune[];
-
+	public filteredAlbumsInCols: Array<IITune[]>;
+	private filteredAlbums: IITune[];
 	private albums: IITune[];
 
 
@@ -26,6 +28,7 @@ export class AlbumsListComponent implements OnInit {
 
 	public handleSearch(filterValue: string): void {
 		this.filteredAlbums = this.albums.filter(album => this.sortAlbum(album, filterValue));
+		this.triggerAssigningColums();
 	}
 
 	private sortAlbum(album: IITune, filterValue: string): boolean {
@@ -38,6 +41,30 @@ export class AlbumsListComponent implements OnInit {
 			.subscribe(albums => {
 				this.albums = albums;
 				this.filteredAlbums = this.albums.slice();
+				this.triggerAssigningColums();
 			});
+	}
+
+	@HostListener('window:resize', ['$event'])
+	@debounce()
+	private assignAlbumsToColumns(event): void {
+
+		const width = event.target.innerWidth;
+		const colCount = (width > 1600) ? 3 : (width > 1100) ? 2 : 1;
+		const columns = [];
+
+		for (let i = 0; i < colCount; i++) {
+			columns.push([]);
+		}
+
+		this.filteredAlbums.forEach((album, index) => {
+			columns[index % colCount].push(album);
+		});
+
+		this.filteredAlbumsInCols = columns.slice();
+	}
+
+	private triggerAssigningColums(): void {
+		window.dispatchEvent( new Event('resize'));
 	}
 }

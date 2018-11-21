@@ -2,17 +2,19 @@
 
 .album {
 	width: 100%;
-	margin: 20px 20px 0 20px;
+	min-height: 144px;
+	margin-top: 40px;
 	background-color: rgb(248, 255, 255);
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
 	.main-panel {
 		display: flex;
+		max-height: 144px;
 		position: relative;
 		padding: 20px 40px 20px 20px;
 
 		.img-wrapper {
-			img {
+			.album-photo {
 				max-width: 100px;
 				height: auto;	
 			}
@@ -20,6 +22,15 @@
 	
 		.primary-info {
 			padding-left: 20px;
+
+			.album-title {
+				font-size: 20px;
+				padding-bottom: 5px;
+			}
+
+			.album-artist {
+				font-size: 18px;
+			}
 		}
 	
 		.expand-button {
@@ -30,7 +41,7 @@
 			position: absolute;
 			bottom: 20px;
 			right: 20px;
-			transition: all .3s;
+			transition: all .4s;
 			outline: none;
 			cursor: pointer;
 	
@@ -50,15 +61,19 @@
 		box-sizing: content-box;
 		overflow: hidden;
 		max-height: 0;
-		transition: max-height .3s;
+		transition: max-height .4s;
 
 		.grid {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 	
 			> * {
-				font-size: 1.2em;
+				font-size: 18px;
 				padding: 3px 0;
+
+				@media screen and (max-width: $small-device) {
+					font-size: 16px;
+				}
 	
 				&:nth-child(even) {
 					justify-self: right;
@@ -67,7 +82,8 @@
 		}
 	
 		.album-link {
-			padding: 20px 0; 
+			margin: 10px 0;
+			padding: 10px 0 10px 0; 
 			display: block;
 			text-align: center;
 			font-size: 18px;
