@@ -1,14 +1,12 @@
 @import '../../../sass/variables';
 
 .top-albums-wrapper {
-
-	
+	background-color: rgb(236, 235, 228);
+	min-height: 100vh;
 
 	.albums-list-container {
 		display: flex;
 		flex-direction: column;
-		background-color: rgb(236, 235, 228);
-		min-height: 100%;
 	
 		& > * {
 			width: 100%;
