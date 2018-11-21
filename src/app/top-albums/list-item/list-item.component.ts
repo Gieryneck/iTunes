@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ListItem } from '../../shared/models/i-list-item';
 
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
+import { faHeadphones } from '@fortawesome/free-solid-svg-icons/faHeadphones';
+import { IITune } from '../../shared/models/i-iTune';
 
 @Component({
 	selector: 'ta-list-item',
@@ -10,8 +11,9 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 })
 export class ListItemComponent implements OnInit {
 
-	@Input() public album: ListItem;
+	@Input() public album: IITune;
 	public readonly faAngleDown = faAngleDown;
+	public readonly faHeadphones = faHeadphones;
 	public panelOpen: boolean = false;
 
 	constructor() { }
@@ -20,7 +22,7 @@ export class ListItemComponent implements OnInit {
 	}
 
 	handleClick(): void {
-		console.log(this.album.id);
+		console.log(this.album.releaseDate);
 		this.toggleExpPanel();
 	}
 

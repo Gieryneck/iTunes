@@ -1,19 +1,21 @@
-<div class="albums-list-container">
+<div class="top-albums-wrapper">
+	<div class="albums-list-container">
 
-	<div class="header-wrapper">
-		<header>	
-			<h1>Top100 Albums</h1>
-			<app-filter (termEmitter)="handleSearch($event)"></app-filter>
-		</header>
-	</div>
+		<div class="header-wrapper">
+			<header>	
+				<h1>Top100 Albums</h1>
+				<app-filter (termEmitter)="handleSearch($event)"></app-filter>
+			</header>
+		</div>
+		
+		<div 
+			*ngIf="filteredAlbums"
+			class="list-wrapper">
 	
-	<div 
-		*ngIf="filteredListData"
-		class="list-wrapper">
-
-		<ul>
-			<ta-list-item *ngFor="let album of filteredListData" [album]="album"></ta-list-item>
-		</ul>
+			<ul>
+				<ta-list-item *ngFor="let album of filteredAlbums" [album]="album"></ta-list-item>
+			</ul>
+		</div>
+	
 	</div>
-
 </div>

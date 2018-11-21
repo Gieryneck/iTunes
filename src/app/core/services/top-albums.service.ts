@@ -5,7 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { IITuneDTO } from '../../shared/models/i-itune-dto';
 import { IITune } from '../../shared/models/i-iTune';
-import { ListItem } from '../../shared/models/i-list-item';
 
 @Injectable()
 export class TopAlbumsService {
@@ -23,10 +22,6 @@ export class TopAlbumsService {
 				catchError(this.handleError),
 				map((resp: { feed: { entry: IITuneDTO[]}}) => resp.feed.entry.map((dto: IITuneDTO) => this.mapToITuneModel(dto)))
 			);
-	}
-
-	public createAlbumsList(albums: IITune[]): ListItem[] {
-		return albums.map(album => ({name: album.name, artist: album.artist, photoUrl: album.photoUrl, id: album.id}));
 	}
 
 	private handleError(error: HttpErrorResponse) {

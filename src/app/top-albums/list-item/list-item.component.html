@@ -1,24 +1,42 @@
 <li class="album">
-	<div class="img-wrapper">
-		<img src="{{album.photoUrl}}" alt="photo">
+	<div class="main-panel">
+		<div class="img-wrapper">
+			<img src="{{album.photoUrl}}" alt="photo">
+		</div>
+			
+		<div class="primary-info">
+			<h3>{{album.name}}</h3>
+			<p>{{album.artist}}</p>
+		</div>
+			
+		<button
+			class="expand-button"
+			[class.panel-open]="panelOpen"
+			(click)="handleClick()">	
+		
+			<fa-icon [icon]="faAngleDown"></fa-icon>
+		</button>
 	</div>
 
-	<div class="primary-info">
-		<h3>{{album.name}}</h3>
-		<p>{{album.artist}}</p>
-		<p>{{album.category}}</p>
+	<div 
+		class="expansion-panel"
+		[class.panel-open]="panelOpen">
+		
+		<div class="grid">
+			<p>Genre: {{album.category}}</p>
+			<p>Price: {{album.price}}</p>
+			<p>Released: {{album.releaseDate | date: 'dd-MM-yyyy'}}</p>
+			<p>Tracks: {{album.numberOfSongs}}</p>
+		</div>
+
+		<a 
+			class="album-link" 
+			target="_blank"
+			href="{{album.link}}">
+			
+			<fa-icon [icon]="faHeadphones"></fa-icon>
+
+			Listen on ITunes
+		</a>
 	</div>
-
-	<button
-		class="expand-button"
-		[class.panel-open]="panelOpen"
-		(click)="handleClick()">
-
-		<fa-icon [icon]="faAngleDown"></fa-icon>
-	</button>	
 </li>
-
-<div 
-	*ngIf="panelOpen"
-	class="expansion-panel">
-</div>

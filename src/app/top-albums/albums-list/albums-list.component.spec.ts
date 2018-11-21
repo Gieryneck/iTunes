@@ -13,16 +13,16 @@ describe('AlbumsListComponent', () => {
 	let component: AlbumsListComponent;
 	let fixture: ComponentFixture<AlbumsListComponent>;
 	let mockTAService;
-	let mockResponse;
-	let mockListData;
+	let mockAlbums;
 
 	beforeEach(() => {
 
-		mockTAService = jasmine.createSpyObj(['fetchTopAlbums', 'createAlbumsList']);
+		mockTAService = jasmine.createSpyObj(['fetchTopAlbums']);
 
-		mockResponse = [
+		mockAlbums = [
 			{
 				category: 'mock-category-1',
+				id: 'mock-id-1',
 				artist: 'Michael Scott',
 				photoUrl: 'mock-photo-1',
 				numberOfSongs: 1,
@@ -35,6 +35,7 @@ describe('AlbumsListComponent', () => {
 			},
 			{
 				category: 'mock-category-2',
+				id: 'mock-id-1',
 				artist: 'John Doe',
 				photoUrl: 'mock-photo-2',
 				numberOfSongs: 2,
@@ -47,20 +48,6 @@ describe('AlbumsListComponent', () => {
 			}
 		];
 
-		mockListData = [
-			{
-				name: 'The Best Of',
-				artist: 'Michael Scott',
-				photoUrl: 'fake-url-1',
-				id: 'fake-id-1'
-			},
-			{
-				name: 'Some songs',
-				artist: 'John Doe',
-				photoUrl: 'fake-url-2',
-				id: 'fake-id-2'
-			}
-		];
 
 		TestBed.configureTestingModule({
 			declarations: [AlbumsListComponent, ListItemComponent],
@@ -71,8 +58,7 @@ describe('AlbumsListComponent', () => {
 		fixture = TestBed.createComponent(AlbumsListComponent);
 		component = fixture.componentInstance;
 
-		mockTAService.fetchTopAlbums.and.returnValue(of(mockResponse));
-		mockTAService.createAlbumsList.and.returnValue(mockListData);
+		mockTAService.fetchTopAlbums.and.returnValue(of(mockAlbums));
 
 		fixture.detectChanges();
 	});
@@ -96,14 +82,14 @@ describe('AlbumsListComponent', () => {
 
 			component.handleSearch(' mich ');
 
-			expect(component.filteredListData).toContain(mockListData[0]);
-			expect(component.filteredListData).not.toContain(mockListData[1]);
+			expect(component.filteredAlbums).toContain(mockAlbums[0]);
+			expect(component.filteredAlbums).not.toContain(mockAlbums[1]);
 		});
 
 		it('should not change list of albums if provided whitespace only', () => {
 			component.handleSearch('    	');
 
-			expect(component.filteredListData.length).toBe(2);
+			expect(component.filteredAlbums.length).toBe(2);
 		});
 	});
 });

@@ -19,10 +19,17 @@ describe('ItemComponent', () => {
 		fixture = TestBed.createComponent(ListItemComponent);
 		component = fixture.componentInstance;
 		component.album = {
-			name: 'The Best Of',
+			category: 'rock',
+			id: 'fake-id',
 			artist: 'Michael Scott',
 			photoUrl: 'fake-url',
-			id: 'fake-id'
+			numberOfSongs: '13',
+			name: 'The Best Of',
+			price: '9.99$',
+			releaseDate: '2018-11-16T00:00:00-07:00',
+			link: 'link',
+			rights: 'rights',
+			title: 'title',
 		};
 		fixture.detectChanges();
 	});

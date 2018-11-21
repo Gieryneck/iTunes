@@ -1,41 +1,49 @@
 @import '../../../sass/variables';
 
-.albums-list-container {
-	display: flex;
-	flex-direction: column;
-	background-color: rgb(236, 235, 228);
+.top-albums-wrapper {
 
-	& > * {
-		width: 100%;
-	}
+	
 
-	.header-wrapper {
-		background: linear-gradient(270deg, $light-purple, $dark-purple 90.71%);
-		height: 80px;
-		padding: 20px 0;
-		
-		header {
-			max-width: 800px;
-			margin: 0 auto;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-
-			h1 {
-				color: $font-1;
-				font-size: 40px;
-			}
+	.albums-list-container {
+		display: flex;
+		flex-direction: column;
+		background-color: rgb(236, 235, 228);
+		min-height: 100%;
+	
+		& > * {
+			width: 100%;
 		}
-		
-	}
-
-	.list-wrapper {
-
-		ul {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			list-style: none;
+	
+		.header-wrapper {
+			background: linear-gradient(270deg, $light-purple, $dark-purple 90.71%);
+			height: 80px;
+			padding: 20px 0;
+			
+			header {
+				max-width: 800px;
+				margin: 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+	
+				h1 {
+					color: $font-1;
+					font-size: 40px;
+				}
+			}
+			
+		}
+	
+		.list-wrapper {
+	
+			ul {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				margin: 0 auto;
+				width: 500px;
+				max-width: 100%;
+			}
 		}
 	}
 }
