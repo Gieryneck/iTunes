@@ -36,13 +36,13 @@ describe('FilterComponent', () => {
 	});
 
 	it('should call handleInput method on keyup event, with input value as argument', () => {
-		spyOn(component, 'handleInput');
+		spyOn(component, 'onKeyUp');
 		const inputDE = fixture.debugElement.query(By.css('input'));
 
 		inputDE.triggerEventHandler('keyup', {target: {value: 'mock-text'}});
 		fixture.detectChanges();
 
-		expect(component.handleInput).toHaveBeenCalledWith('mock-text');
+		expect(component.onKeyUp).toHaveBeenCalledWith('mock-text');
 	});
 
 	it('should display clear-filter-button if some search term is provided', () => {
@@ -79,7 +79,7 @@ describe('FilterComponent', () => {
 			const input = fixture.nativeElement.querySelector('input');
 			input.value = '';
 
-			component.handleInput('some-text');
+			component.onKeyUp('some-text');
 			fixture.detectChanges();
 
 			expect(input.value).toBe('some-text');
@@ -88,7 +88,7 @@ describe('FilterComponent', () => {
 		it('should trigger emission of received string argument after 500ms', fakeAsync(() => {
 			spyOn(component.termEmitter, 'emit');
 
-			component.handleInput('some-text');
+			component.onKeyUp('some-text');
 			tick(500);
 
 			expect(component.termEmitter.emit).toHaveBeenCalledWith('some-text');

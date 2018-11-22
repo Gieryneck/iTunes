@@ -43,7 +43,7 @@
 	}	
 
 	.list-wrapper {
-		margin: 30px 20px 0 20px;
+		margin: 0 20px;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-evenly;
@@ -52,7 +52,6 @@
 			list-style: none;
 			display: flex;
 			flex-direction: column;
-			margin: 0 auto;
 			width: 500px;
 			max-width: 100%;
 		}

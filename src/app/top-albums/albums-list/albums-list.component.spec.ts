@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, flush, tick } from '@angular/core/testing';
 import { SharedModule } from '../../shared/shared.module';
 
 import { TopAlbumsService } from '../../core/services/top-albums.service';
@@ -8,12 +8,13 @@ import { ListItemComponent } from '../list-item/list-item.component';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { FilterComponent } from '../../shared/components/filter/filter.component';
+import { IITune } from '../../shared/models/i-iTune';
 
 describe('AlbumsListComponent', () => {
 	let component: AlbumsListComponent;
 	let fixture: ComponentFixture<AlbumsListComponent>;
 	let mockTAService;
-	let mockAlbums;
+	let mockAlbums: IITune[];
 
 	beforeEach(() => {
 
@@ -25,7 +26,7 @@ describe('AlbumsListComponent', () => {
 				id: 'mock-id-1',
 				artist: 'Michael Scott',
 				photoUrl: 'mock-photo-1',
-				numberOfSongs: 1,
+				numberOfSongs: '1',
 				name: 'The Best Of',
 				price: 'mock-price-1',
 				releaseDate: 'mock-releaseDate-1',
@@ -38,7 +39,7 @@ describe('AlbumsListComponent', () => {
 				id: 'mock-id-1',
 				artist: 'John Doe',
 				photoUrl: 'mock-photo-2',
-				numberOfSongs: 2,
+				numberOfSongs: '2',
 				name: 'Some songs',
 				price: 'mock-price-2',
 				releaseDate: 'mock-releaseDate-2',
@@ -78,18 +79,28 @@ describe('AlbumsListComponent', () => {
 	});
 
 	describe('handleSearch method', () => {
-		it('should filter list of albums properly, not caring about whitespace at the ends of string or lowercase/uppercase', () => {
+
+		function flatten(nestedArr: Array<IITune[]>) {
+			return nestedArr.reduce((acc, curr) => {
+				return acc.concat(curr);
+			}, []);
+		}
+
+		it('should filter list of albums properly, not caring about whitespace at the ends of string or lowercase/uppercase', fakeAsync(() => {
 
 			component.handleSearch(' mich ');
+			flush();
 
-			expect(component.filteredAlbums).toContain(mockAlbums[0]);
-			expect(component.filteredAlbums).not.toContain(mockAlbums[1]);
-		});
+			expect(flatten(component.filteredAlbumsInCols)).toContain(mockAlbums[0]);
+			expect(flatten(component.filteredAlbumsInCols)).not.toContain(mockAlbums[1]);
+		}));
 
-		it('should not change list of albums if provided whitespace only', () => {
+		it('should not change list of albums if provided whitespace only', fakeAsync(() => {
 			component.handleSearch('    	');
 
-			expect(component.filteredAlbums.length).toBe(2);
-		});
+			flush();
+
+			expect(flatten(component.filteredAlbumsInCols).length).toBe(2);
+		}));
 	});
 });

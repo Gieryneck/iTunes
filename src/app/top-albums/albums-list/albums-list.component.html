@@ -9,9 +9,13 @@
 	
 	<div *ngIf="filteredAlbumsInCols">
 
-		<div class="list-wrapper">	
+		<div class="list-wrapper">
 			<ul *ngFor="let column of filteredAlbumsInCols">
-				<ta-list-item *ngFor="let album of column" [album]="album"></ta-list-item>
+				<ta-list-item 
+					*ngFor="let album of column"
+					(openedEmitter)="handleOpeningListItem($event)" 
+					[album]="album">
+				</ta-list-item>
 			</ul>
 		</div>
 

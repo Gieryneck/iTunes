@@ -12,7 +12,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 })
 export class FilterComponent implements OnInit {
 
-	@Output() termEmitter: EventEmitter<string> = new EventEmitter<string>();
+	@Output() public termEmitter: EventEmitter<string> = new EventEmitter<string>();
 	public filterValue: string = '';
 	public readonly faTimes = faTimes;
 
@@ -27,7 +27,7 @@ export class FilterComponent implements OnInit {
 		} );
 	}
 
-	public handleInput(term: string): void {
+	public onKeyUp(term: string): void {
 		this.filterValue = term;
 		this.termSubject.next(term);
 	}
@@ -36,5 +36,4 @@ export class FilterComponent implements OnInit {
 		this.filterValue = '';
 		this.termSubject.next('');
 	}
-
 }

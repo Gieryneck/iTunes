@@ -3,8 +3,7 @@
 	<input
 		value="{{filterValue}}"
 		placeholder="Search"
-		(keyup)="handleInput($event.target.value)">
-
+		(keyup)="onKeyUp($event.target.value)">
 
 	<span 
 		*ngIf="filterValue" 

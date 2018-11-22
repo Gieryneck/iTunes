@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons/faHeadphones';
+
 import { IITune } from '../../shared/models/i-iTune';
 
 @Component({
@@ -9,25 +10,33 @@ import { IITune } from '../../shared/models/i-iTune';
 	templateUrl: './list-item.component.html',
 	styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent {
 
 	@Input() public album: IITune;
+	@Output() public openedEmitter: EventEmitter<string> = new EventEmitter<string>();
+
 	public readonly faAngleDown = faAngleDown;
 	public readonly faHeadphones = faHeadphones;
-	public panelOpen: boolean = false;
+	public isPanelOpen: boolean = false;
 
-	constructor() { }
-
-	ngOnInit() {
-	}
-
-	handleClick(): void {
-		console.log(this.album.releaseDate);
+	public handleClick(): void {
 		this.toggleExpPanel();
+
+		if (this.isPanelOpen) {
+			this.notifyAboutOpening();
+		}
 	}
 
-	toggleExpPanel(): void {
-		this.panelOpen = !this.panelOpen;
+	public toggleExpPanel(): void {
+		this.isPanelOpen = !this.isPanelOpen;
+	}
+
+	public closePanel(): void {
+		this.isPanelOpen = false;
+	}
+
+	private notifyAboutOpening(): void {
+		this.openedEmitter.emit(this.album.id);
 	}
 
 }
