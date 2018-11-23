@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 import { SharedModule } from '../../shared/shared.module';
 
+import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
+
 import { TopAlbumsService } from '../../core/services/top-albums.service';
 import { AlbumsListComponent } from './albums-list.component';
 import { ListItemComponent } from '../list-item/list-item.component';
-
-import { of } from 'rxjs';
-import { By } from '@angular/platform-browser';
 import { FilterComponent } from '../../shared/components/filter/filter.component';
+
 import { IITune } from '../../shared/models/i-iTune';
 
 describe('AlbumsListComponent', () => {
