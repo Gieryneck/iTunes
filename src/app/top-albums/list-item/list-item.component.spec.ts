@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 
-import { ListItemComponent } from './list-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { ListItemComponent } from './list-item.component';
 
 describe('ListItemComponent', () => {
 	let component: ListItemComponent;

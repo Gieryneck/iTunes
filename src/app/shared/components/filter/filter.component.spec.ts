@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { By } from '@angular/platform-browser';
 
 import { FilterComponent } from './filter.component';
-import { By } from '@angular/platform-browser';
 
 describe('FilterComponent', () => {
 	let component: FilterComponent;
