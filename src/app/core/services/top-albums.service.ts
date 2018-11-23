@@ -43,9 +43,7 @@ export class TopAlbumsService {
 			name: dto['im:name'].label,
 			price: dto['im:price'].label,
 			releaseDate: dto['im:releaseDate'].label,
-			link: dto.link.attributes.href,
-			rights: dto.rights.label,
-			title: dto.title.label
+			link: dto.link.attributes.href
 		};
 	}
 }

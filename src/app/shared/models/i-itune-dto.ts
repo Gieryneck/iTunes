@@ -72,12 +72,4 @@ export interface IITuneDTO {
 			type: string;
 		};
 	};
-
-	rights: {
-		label: string;
-	};
-
-	title: {
-		label: string;
-	};
 }

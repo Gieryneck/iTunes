@@ -8,6 +8,4 @@ export interface IITune {
 	price: string;
 	releaseDate: string;
 	link: string;
-	rights: string;
-	title: string;
 }

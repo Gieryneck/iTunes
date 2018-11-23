@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, flush, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 import { SharedModule } from '../../shared/shared.module';
 
 import { TopAlbumsService } from '../../core/services/top-albums.service';
@@ -16,7 +16,7 @@ describe('AlbumsListComponent', () => {
 	let mockTAService;
 	let mockAlbums: IITune[];
 
-	beforeEach(() => {
+	beforeEach(fakeAsync(() => {
 
 		mockTAService = jasmine.createSpyObj(['fetchTopAlbums']);
 
@@ -25,27 +25,23 @@ describe('AlbumsListComponent', () => {
 				category: 'mock-category-1',
 				id: 'mock-id-1',
 				artist: 'Michael Scott',
-				photoUrl: 'mock-photo-1',
+				photoUrl: '../../../assets/images/imgStub.png',
 				numberOfSongs: '1',
 				name: 'The Best Of',
 				price: 'mock-price-1',
 				releaseDate: 'mock-releaseDate-1',
-				link: 'mock-link-1',
-				rights: 'mock-rights-1',
-				title: 'mock-title-1',
+				link: 'mock-link-1'
 			},
 			{
 				category: 'mock-category-2',
-				id: 'mock-id-1',
+				id: 'mock-id-2',
 				artist: 'John Doe',
-				photoUrl: 'mock-photo-2',
+				photoUrl: '../../../assets/images/imgStub.png',
 				numberOfSongs: '2',
 				name: 'Some songs',
 				price: 'mock-price-2',
 				releaseDate: 'mock-releaseDate-2',
-				link: 'mock-link-2',
-				rights: 'mock-rights-2',
-				title: 'mock-title-2',
+				link: 'mock-link-2'
 			}
 		];
 
@@ -62,7 +58,11 @@ describe('AlbumsListComponent', () => {
 		mockTAService.fetchTopAlbums.and.returnValue(of(mockAlbums));
 
 		fixture.detectChanges();
-	});
+
+		flush();
+
+		fixture.detectChanges();
+	}));
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
@@ -80,7 +80,7 @@ describe('AlbumsListComponent', () => {
 
 	describe('handleSearch method', () => {
 
-		function flatten(nestedArr: Array<IITune[]>) {
+		function flatten(nestedArr: Array<IITune[]>): IITune[] {
 			return nestedArr.reduce((acc, curr) => {
 				return acc.concat(curr);
 			}, []);
@@ -102,5 +102,49 @@ describe('AlbumsListComponent', () => {
 
 			expect(flatten(component.filteredAlbumsInCols).length).toBe(2);
 		}));
+	});
+
+	describe('handleOpeningListItem method', () => {
+
+		it('Should store info about previously opened list item and manage autoclosing one item when another gets opened', fakeAsync(() => {
+			const listItem1: ListItemComponent = fixture.debugElement.queryAll(By.directive(ListItemComponent))[0].componentInstance;
+			const listItem2: ListItemComponent  = fixture.debugElement.queryAll(By.directive(ListItemComponent))[1].componentInstance;
+
+			listItem1.isPanelOpen = false;
+			listItem2.isPanelOpen = false;
+
+			listItem1.handleClick();
+			flush();
+			expect(listItem1.isPanelOpen).toBe(true); // to prove that listItem1 is opened at that point
+
+			listItem2.handleClick();
+			flush();
+
+			expect(listItem1.isPanelOpen).toBe(false);
+		}));
+
+		it('Should not trigger toggling previously opened list item if that item is already closed', fakeAsync(() => {
+			const listItem1: ListItemComponent = fixture.debugElement.queryAll(By.directive(ListItemComponent))[0].componentInstance;
+			const listItem2: ListItemComponent  = fixture.debugElement.queryAll(By.directive(ListItemComponent))[1].componentInstance;
+
+			listItem1.isPanelOpen = false;
+
+			// store listItem1's id in AlbumsListComponent
+			listItem1.handleClick();
+			flush();
+
+			// close listItem1
+			listItem1.handleClick();
+			flush();
+			expect(listItem1.isPanelOpen).toBe(false); // to prove that listItem1 is closed at that point
+
+			// check if AlbumsListComponent will not trigger toggling listItem1
+			spyOn(listItem1, 'toggleExpPanel');
+			listItem2.handleClick();
+			flush();
+
+			expect(listItem1.toggleExpPanel).not.toHaveBeenCalled();
+		}));
+
 	});
 });

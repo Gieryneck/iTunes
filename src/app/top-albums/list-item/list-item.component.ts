@@ -31,10 +31,6 @@ export class ListItemComponent {
 		this.isPanelOpen = !this.isPanelOpen;
 	}
 
-	public closePanel(): void {
-		this.isPanelOpen = false;
-	}
-
 	private notifyAboutOpening(): void {
 		this.openedEmitter.emit(this.album.id);
 	}
