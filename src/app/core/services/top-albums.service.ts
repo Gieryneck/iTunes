@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 
 import { IITuneDTO } from '../../shared/models/i-itune-dto';
-import { IITune } from '../../shared/models/i-iTune';
+import { IITune } from '../../shared/models/i-itune';
 
 @Injectable()
 export class TopAlbumsService {

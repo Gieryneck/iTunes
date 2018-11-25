@@ -3,7 +3,7 @@ import { Component, OnInit, HostListener, ViewChildren, QueryList } from '@angul
 import { TopAlbumsService } from '../../core/services/top-albums.service';
 import { ListItemComponent } from '../list-item/list-item.component';
 
-import { IITune } from '../../shared/models/i-iTune';
+import { IITune } from '../../shared/models/i-itune';
 import { debounce } from '../../shared/decorators/debounce.decorator';
 
 @Component({

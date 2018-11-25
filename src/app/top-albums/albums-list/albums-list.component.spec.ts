@@ -9,7 +9,7 @@ import { AlbumsListComponent } from './albums-list.component';
 import { ListItemComponent } from '../list-item/list-item.component';
 import { FilterComponent } from '../../shared/components/filter/filter.component';
 
-import { IITune } from '../../shared/models/i-iTune';
+import { IITune } from '../../shared/models/i-itune';
 
 describe('AlbumsListComponent', () => {
 	let component: AlbumsListComponent;

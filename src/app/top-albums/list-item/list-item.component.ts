@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons/faHeadphones';
 
-import { IITune } from '../../shared/models/i-iTune';
+import { IITune } from '../../shared/models/i-itune';
 
 @Component({
 	selector: 'ta-list-item',
