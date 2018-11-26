@@ -11,19 +11,26 @@
 		margin-top: 40px
 	}
 
+	@media screen and (max-width: $x-small-device) {
+		min-height: 124px;
+	}
+
 	.main-panel {
 		display: flex;
 		max-height: 144px;
 		position: relative;
 		padding: 20px 40px 20px 20px;
-		
+
+		@media screen and (max-width: $x-small-device) {
+			max-height: 124px;
+		}
 
 		.img-wrapper {
 			.album-photo {
 				max-width: 100px;
 				height: auto;	
 
-				@media screen and (max-width: 400px) {
+				@media screen and (max-width: $x-small-device) {
 					max-width: 80px;
 				}
 			}
@@ -34,11 +41,15 @@
 			overflow: hidden;
 
 			.album-title {
-				font-size: 20px;
+				font-size: 18px;
 				padding-bottom: 5px;
 
 				@media screen and (max-width: $small-device) {
 					font-size: 16px;
+				}
+
+				@media screen and (max-width: $x-small-device) {
+					font-size: 14px;
 				}
 			}
 
@@ -48,9 +59,13 @@
 				@media screen and (max-width: $small-device) {
 					font-size: 16px;
 				}
+
+				@media screen and (max-width: $x-small-device) {
+					font-size: 14px;
+				}
 			}
 		}
-	
+
 		.expand-button {
 			background: none;
 			border: none;
@@ -95,6 +110,10 @@
 				@media screen and (max-width: $small-device) {
 					font-size: 16px;
 				}
+
+				@media screen and (max-width: $x-small-device) {
+					font-size: 14px;
+				}
 	
 				&:nth-child(even) {
 					justify-self: right;
@@ -119,6 +138,14 @@
 		
 				&:hover, &:active {
 					color: $light-purple;
+				}
+
+				@media screen and (max-width: $small-device) {
+					font-size: 16px;
+				}
+	
+				@media screen and (max-width: $x-small-device) {
+					font-size: 14px;
 				}
 			}
 		}
